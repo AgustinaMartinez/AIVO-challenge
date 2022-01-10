@@ -7,7 +7,8 @@ export const colors = {
     base: '#050507',
   },
   white: {
-    base: '#e6e6e6',
+    base: '#ffffff',
+    secondary: '#e6e6e6',
   },
   gray: {
     base: '#8492a6',

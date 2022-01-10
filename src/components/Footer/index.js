@@ -1,9 +1,9 @@
-import { FooterContainerStyled } from './footer.syled';
+import { FooterContainerStyled, PStyled } from './footer.syled';
 
 const Footer = () => {
   return (
     <FooterContainerStyled>
-      Footer
+      <PStyled> Made with 🤍  by Agus</PStyled>
     </FooterContainerStyled>
   )
 }
