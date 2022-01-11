@@ -5,7 +5,6 @@ const AppContext = createContext();
 export const AppProvider = props => {
   const [storage, setStorage] = useState(
     {
-      user: '',
       data: {
         status: 'pending',
         data: [],

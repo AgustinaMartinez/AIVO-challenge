@@ -51,7 +51,7 @@ const Header = () => {
                 </TheLink>))}
             </StyledUl>
             )}
-          <ImgStyled src='/assets/pics/logo-white.png' alt="logo" />
+          <ImgStyled src='/assets/pics/aivo.png' alt="logo" />
         </ContainerStyled>
       </HeaderStyled>
     </>

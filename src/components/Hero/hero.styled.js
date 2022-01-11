@@ -5,3 +5,9 @@ export const HeroContainerStyled = styled.div`
   font-family: ${typography.fonts.base};
   color: ${colors.violet.base};
 `;
+
+export const ImgHeroStyled = styled.img`
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+`;

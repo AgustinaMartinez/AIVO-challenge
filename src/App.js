@@ -3,21 +3,31 @@ import Layout from './templates/Layout.js';
 import { Home, Login, NotFound } from './pages';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppProvider } from './context';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 
 const App = () => {
+  const { isAuthenticated } = useAuth0();
+
   return (
-    <AppProvider>
-      <Router>
-      <GlobalStyle/>
-        <Layout>
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </Layout>
-      </Router>
-    </AppProvider>
+    <Auth0Provider
+      domain="dev-ksyp95es.us.auth0.com"
+      clientId="an9NH5A5LRqGmNKPtXVe5dwhh71JNLr7"
+      redirectUri="http://localhost:3000/home"
+    >
+      <AppProvider>
+        <Router>
+        <GlobalStyle/>
+          <Layout>
+            <Switch>
+              {isAuthenticated
+                ? <Route exact path="/home" component={Home} />
+                : <Route exact path="/" component={Login} />}
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Layout>
+        </Router>
+      </AppProvider>
+    </Auth0Provider>
   );
 };
 

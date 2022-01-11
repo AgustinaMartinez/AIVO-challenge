@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { colors, typography } from '../../themes';
-// import { HashLink } from "react-router-hash-link";
 import { Link } from 'react-router-dom';
 
 export const BackdropStyled = styled.div`
@@ -63,17 +62,38 @@ export const TheLink = styled(Link)(({ active }) => {
     list-style: none;
     width: 100%;
     padding: 2rem 1.8rem;
-    color: ${colors.black.base};
     font-family: ${typography.fonts.secondary};
-    background-color: ${active ? colors.violet.base : colors.white};
+    color: ${colors.black.base};
+    color: ${active ? colors.white.base : colors.black.base};
+    background-color: ${active ? colors.violet.base : colors.white.secondary};
     &:active {
       background-color: ${colors.violet.base};
-      color: ${colors.lightBlue.base};
+      color: ${active ? colors.white.base : colors.black.base};
+    }
+  `;
+});
+
+export const LogoutButtonStyled = styled.button(({ active }) => {
+  return css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 2rem 1.8rem;
+    font-family: ${typography.fonts.secondary};
+    color: ${active ? colors.white.base : colors.black.base};
+    background-color: ${active ? colors.violet.base : colors.white.secondary};
+    &:active {
+      background-color: ${colors.violet.base};
+      color: ${active ? colors.white.base : colors.black.base};
     }
   `;
 });
 
 export const ImgLogoStyled = styled.img`
-  width: 140px;
+  width: 100px;
   align-self: center;
 `;

@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   SideDrawerStyled,
   ContentStyled,
   TheLink,
+  LogoutButtonStyled,
   ImgLogoStyled,
-} from './sideDrawer.styles';
+} from './sideDrawer.styled';
 
 const NavSideDrawer = ({ show, setShow }) => {
-  const [keyActive, setKeyActive] = useState('#aboutUs');
-  const isHomePage = window.location.pathname === '/' ? true : false;
-
+  const [keyActive, setKeyActive] = useState('');
+  const isHomePage = window.location.pathname === '/home' ? true : false;
+  const { logout } = useAuth0();
+ 
   const sidebarButtons = [
     {
       name: 'Cerrar sesión',
@@ -33,15 +36,13 @@ const NavSideDrawer = ({ show, setShow }) => {
     <SideDrawerStyled show={show}>
       <ContentStyled>
         {isHomePage ? sidebarButtons.map(item => (
-          <TheLink
-            smooth
-            to={item.to}
+          <LogoutButtonStyled
             key={item.name}
             active={keyActive === item.name ? true : false}
-            onClick={() => handleClick(item.name)}
-            >
+            onClick={() => logout({ returnTo: 'http://localhost:3000' })}
+          >
             {item.name}
-          </TheLink>
+          </LogoutButtonStyled>
         )) : sidebarButton.map(item => {
           return (
             <TheLink
@@ -56,7 +57,7 @@ const NavSideDrawer = ({ show, setShow }) => {
           )
         })}
       </ContentStyled>
-      <ImgLogoStyled alt="logo" src="" />
+      <ImgLogoStyled alt="logo" src="/assets/pics/aivo.png" />
     </SideDrawerStyled>
   );
 };

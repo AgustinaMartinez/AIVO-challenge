@@ -1,4 +1,4 @@
-import { ButtonSidebarStyled, IconStyled } from './buttonSidebar.styles';
+import { ButtonSidebarStyled, IconStyled } from './buttonSidebar.styled';
 
 const ButtonSidebar = ({ children, onClick, icon }) => {
   return (
