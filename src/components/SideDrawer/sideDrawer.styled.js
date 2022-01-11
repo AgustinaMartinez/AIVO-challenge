@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { colors, typography } from '../../themes';
-import { Link } from 'react-router-dom';
 
 export const BackdropStyled = styled.div`
   position: fixed;
@@ -52,28 +51,17 @@ export const HeaderStyled = styled.div`
   position: relative;
 `;
 
-export const TheLink = styled(Link)(({ active }) => {
-  return css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    list-style: none;
-    width: 100%;
-    padding: 2rem 1.8rem;
-    font-family: ${typography.fonts.secondary};
-    color: ${colors.black.base};
-    color: ${active ? colors.white.base : colors.black.base};
-    background-color: ${active ? colors.violet.base : colors.white.secondary};
-    &:active {
-      background-color: ${colors.violet.base};
-      color: ${active ? colors.white.base : colors.black.base};
-    }
-  `;
-});
+export const ImgContainerStyled = styled.div`
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
 
-export const LogoutButtonStyled = styled.button(({ active }) => {
+  > img {
+    width: 100%;
+  }
+`;
+
+export const ButtonStyled = styled.button(() => {
   return css`
     display: flex;
     justify-content: center;
@@ -83,12 +71,14 @@ export const LogoutButtonStyled = styled.button(({ active }) => {
     border: none;
     width: 100%;
     padding: 2rem 1.8rem;
+    margin-top: 2rem;
     font-family: ${typography.fonts.secondary};
-    color: ${active ? colors.white.base : colors.black.base};
-    background-color: ${active ? colors.violet.base : colors.white.secondary};
+    color: ${colors.black.base};
+    background-color: ${colors.white.secondary};
+
     &:active {
       background-color: ${colors.violet.base};
-      color: ${active ? colors.white.base : colors.black.base};
+      color: ${colors.white.base};
     }
   `;
 });

@@ -8,6 +8,6 @@ export const HeroContainerStyled = styled.div`
 
 export const ImgHeroStyled = styled.img`
   width: 100%;
-  height: 12rem;
+  height: 13rem;
   object-fit: cover;
 `;

@@ -3,59 +3,41 @@ import { useAuth0 } from '@auth0/auth0-react';
 import {
   SideDrawerStyled,
   ContentStyled,
-  TheLink,
-  LogoutButtonStyled,
+  ImgContainerStyled,
+  ButtonStyled,
   ImgLogoStyled,
 } from './sideDrawer.styled';
 
-const NavSideDrawer = ({ show, setShow }) => {
-  const [keyActive, setKeyActive] = useState('');
+const NavSideDrawer = ({ show }) => {
   const isHomePage = window.location.pathname === '/home' ? true : false;
-  const { logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
  
-  const sidebarButtons = [
-    {
-      name: 'Cerrar sesión',
-      to: '/login'
-    },
-  ];
+  const sidebarButtons = ['Login', 'Logout'];
 
-  const sidebarButton = [
-    {
-      name: 'Ir al home',
-      to: '/'
-    },
-  ];
-
-  const handleClick = name => {
-    keyActive === name ? setKeyActive(null) : setKeyActive(name);
-    setShow(false);
+  const handleOnClick = () => {
+    if (isHomePage && isAuthenticated) {
+      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN });
+    } else {
+      loginWithRedirect();
+    }
   };
 
   return (
     <SideDrawerStyled show={show}>
       <ContentStyled>
-        {isHomePage ? sidebarButtons.map(item => (
-          <LogoutButtonStyled
-            key={item.name}
-            active={keyActive === item.name ? true : false}
-            onClick={() => logout({ returnTo: 'http://localhost:3000' })}
-          >
-            {item.name}
-          </LogoutButtonStyled>
-        )) : sidebarButton.map(item => {
-          return (
-            <TheLink
-              smooth
-              to={item.to}
-              key={item.to}
-              active={keyActive === item.to ? true : false}
-              onClick={() => handleClick(item.to)}
-              >
-              {item.name}
-            </TheLink>
-          )
-        })}
+        {user && (
+          <div>
+            <ImgContainerStyled>
+              <img alt="user" src={user?.picture}/>
+            </ImgContainerStyled>
+            <p>{user?.name}</p>
+          </div>
+        )}
+        <ButtonStyled
+          onClick={() => handleOnClick()}
+        >
+          {(isHomePage && isAuthenticated) ? sidebarButtons[1] : sidebarButtons[0]}
+        </ButtonStyled>
       </ContentStyled>
       <ImgLogoStyled alt="logo" src="/assets/pics/aivo.png" />
     </SideDrawerStyled>

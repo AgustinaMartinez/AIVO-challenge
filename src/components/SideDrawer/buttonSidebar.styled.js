@@ -9,16 +9,8 @@ export const ButtonSidebarStyled = styled.button`
   align-items: center;
   outline: 0;
   width: 100%;
-  border-bottom: 0.5px solid #656565;
   background-color: transparent;
   padding: .8125rem; 
-  > p {
-    font-size: 1.125rem;
-    font-weight: ${typography.weights.regular};
-    line-height: 1.3125rem;
-    letter-spacing: 0em;
-    color: #777777;
-  }
   :hover{
     border-bottom: 0.6px solid ${colors.gray.base};
   }
