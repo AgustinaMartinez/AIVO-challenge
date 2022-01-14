@@ -8,7 +8,7 @@ export const ButtonStyled = styled.button(({ type }) =>`
   justify-content: center;
   color: ${type === 'primary' ? colors.violet.base : colors.white.base};
   font-weight: ${typography.weights.medium};
-  border: 2px solid ${type === 'primary' ? colors.violet.base : colors.violet.secondary};
+  border: 2px solid ${type === 'primary' ? colors.violet.base : colors.violet.base};
   border-radius: 5px;
   background: ${type === 'primary' ? colors.white.base : colors.violet.base};
   cursor: pointer;
