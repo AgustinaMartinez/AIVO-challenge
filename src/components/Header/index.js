@@ -24,7 +24,7 @@ const Header = () => {
 
   const handleOnClick = () => {
     if (isHomePage && isAuthenticated) {
-      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN });
+      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN || process.env.REACT_APP_AUTH0_URI_RETURN_TW });
     } else {
       loginWithRedirect();
     }
