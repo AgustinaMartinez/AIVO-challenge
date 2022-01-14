@@ -11,6 +11,8 @@ In the project directory, you can run:
 
 Installs all dependencies and dew dependencies.
 
+**Note: For env variables, use the env.template file as a guide to complete REACT_APP_AUTH0_DOMAIN and REACT_APP_AUTH0_CLIENT_ID variables with your Auth0 information account**
+
 ## In one terminal:
 
 ### `npm run start`

@@ -15,7 +15,7 @@ const NavSideDrawer = ({ show }) => {
 
   const handleOnClick = () => {
     if (isHomePage && isAuthenticated) {
-      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN || process.env.REACT_APP_AUTH0_URI_RETURN_TWO });
+      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN_DEV || process.env.REACT_APP_AUTH0_URI_RETURN_PROD });
     } else {
       loginWithRedirect();
     }
