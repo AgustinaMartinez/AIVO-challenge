@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
          url('/assets/fonts/Sailec-Medium.woff') format('woff'),
          url('/assets/fonts/Sailec-Medium.ttf')  format('truetype'),
          url('/assets/fonts/Sailec-Medium.svg#Sailec-Medium') format('svg');
-}
+  }
   html,
   body {
     padding: 0;
