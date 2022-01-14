@@ -12,4 +12,21 @@ export const ImgHeroStyled = styled.img`
   margin-top: 5px;
   object-fit: cover;
   border-radius: 10px;
+
+  @media (min-width: 1400px) {
+    height: 50vh;
+  }
+
+  @media (min-width: 1900px) {
+    height: 55vh;
+  }
+`;
+
+export const LoadingStyled = styled.img`
+  width: 100%;
+
+  @media (min-width: 1400px) {
+    width: 50%;
+    margin-left: 25%;
+  }
 `;

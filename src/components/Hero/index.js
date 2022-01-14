@@ -1,5 +1,5 @@
 import { useData } from '../../context/data.context';
-import { HeroContainerStyled, ImgHeroStyled } from './hero.styled';
+import { HeroContainerStyled, ImgHeroStyled, LoadingStyled} from './hero.styled';
 
 const Hero = () => {
   const { data } = useData();
@@ -8,8 +8,10 @@ const Hero = () => {
   return (
     <HeroContainerStyled>
       <h3>Most Popular</h3>
-      <ImgHeroStyled alt="Hero Movie" src={heroMovie?.images?.['Poster Art']?.url
-        ? heroMovie?.images?.['Poster Art']?.url : 'http://auxiliadoravaldivia.cl/colegio/load.gif'} />
+      {heroMovie?.images?.['Poster Art']?.url
+        ? <ImgHeroStyled alt="Hero Movie" src={heroMovie?.images?.['Poster Art']?.url} />
+        : <LoadingStyled src="http://auxiliadoravaldivia.cl/colegio/load.gif" />
+      } 
     </HeroContainerStyled>
   );
 };

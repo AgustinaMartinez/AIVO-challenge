@@ -24,8 +24,16 @@ export const ContainerStyled = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   @media (min-width: 1400px) {
-    padding: 0 3rem 0 0;
+    padding: 0 3rem 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
+`;
+
+export const LastContainerStyled = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const ImgStyled = styled.img`
@@ -38,6 +46,22 @@ export const MenuButtonStyled = styled.button`
   outline: none;
   background: none;
   cursor: pointer;
+`;
+
+export const UserStyled = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ImgContainerStyled = styled.div`
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+
+  > img {
+    width: 100%;
+  }
 `;
 
 export const StyledUl = styled.ul`
@@ -81,5 +105,17 @@ export const TheLink = styled(Link)(({ active }) => `
   background-color: ${active ? colors.violet.base : colors.white.base};
   &:active {
     background-color: ${active ? colors.violet.base : colors.white.base};
+  }
+
+  @media (min-width: 1400px) {
+    margin: 0 2rem;
+
+    &:hover {
+      color: ${colors.violet.base};
+    }
+
+    &:active {
+      background-color: ${colors.white.base};
+    }
   }
 `);

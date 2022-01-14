@@ -17,12 +17,6 @@ export const ButtonStyled = styled.button(({ type }) =>`
       stroke: ${type === 'primary' ? colors.violet.base : colors.white.base};
     }
 
-  &:hover {
-    border: 2px solid ${colors.violet.secondary};
-    color: ${type === 'primary' ? colors.violet.base : colors.white.secondary};
-    transition: .2s;
-  }
-
   &:active {
     border: 2px solid ${type === 'primary' ? colors.violet.base : colors.violet.secondary};
     color: ${type === 'primary' ? colors.white.base : colors.violet.base};
@@ -31,6 +25,31 @@ export const ButtonStyled = styled.button(({ type }) =>`
 
     > svg {
       stroke: ${colors.white.base};
+    }
+  }
+
+  @media (min-width: 1400px) {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+
+    &:hover {
+      border: 2px solid ${type === 'primary' ? colors.violet.base : colors.violet.secondary};
+      background: ${type === 'primary' ? colors.violet.base : colors.violet.secondary};
+      color: ${type === 'primary' ? colors.white.base : colors.white.base};
+      transition: .2s;
+
+      > svg {
+        stroke: ${type === 'primary' ? colors.white.base : colors.white.base};
+      }
+    }
+
+    > svg {
+      width: 30px;
+      stroke: ${type === 'primary' ? colors.violet.base : colors.white.base};
+
+      &:hover {
+        stroke: ${type === 'primary' ? colors.white.base : colors.white.base};
+      }
     }
   }
 `);

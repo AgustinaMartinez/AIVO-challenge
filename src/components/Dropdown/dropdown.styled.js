@@ -11,10 +11,11 @@ export const DropdownHeaderStyled = styled.select`
   font-size: 0.9rem;
   outline: none;
   cursor: pointer;
+
+  @media (min-width: 1400px) {
+    padding: 1rem;
+  }
 `;
 
 export const DropdownItemStyled = styled.option`
-  &:hover {
-    cursor: pointer;
-  }
 `;

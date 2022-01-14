@@ -11,7 +11,8 @@ const Button = props => {
   } = props;
 
   return (
-    <ButtonStyled id={id} type={type} style={{ width }} onClick={onClick}>{title}
+    <ButtonStyled id={id} type={type} style={{ width }} onClick={onClick}>
+      {title}
       {icon}
     </ButtonStyled>
   );

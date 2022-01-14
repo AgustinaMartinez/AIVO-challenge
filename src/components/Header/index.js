@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import SideDrawer from '../SideDrawer';
 import { MenuIcon } from '../icons';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   ContainerStyled,
   HeaderStyled,
   MenuButtonStyled,
+  UserStyled,
+  LastContainerStyled,
+  ImgContainerStyled,
   ImgStyled,
   StyledUl,
   TheLink,
@@ -12,15 +16,19 @@ import {
 
 const Header = () => {
   const [sideDraweOpen, setsideDraweOpen] = useState(false);
-  const [keyActive, setKeyActive] = useState('/');
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const isHomePage = window.location.pathname === '/home' ? true : false;
   const screenWidth = window.innerWidth;
 
-  const navItems = [
-    {
-      name: 'Cerrar sesión',
-      to: '/login'
-    },
-  ];
+  const sidebarButtons = ['Login', 'Logout'];
+
+  const handleOnClick = () => {
+    if (isHomePage && isAuthenticated) {
+      logout({ returnTo: process.env.REACT_APP_AUTH0_URI_RETURN });
+    } else {
+      loginWithRedirect();
+    }
+  };
 
   const drawerToggleClick = () =>{
     setsideDraweOpen(!sideDraweOpen);
@@ -39,19 +47,27 @@ const Header = () => {
               <MenuIcon />
             </MenuButtonStyled>
           ) : (
-            <StyledUl>
-              {navItems.map(item => (
-                <TheLink
-                  to={item.to}
-                  key={item}
-                  active={keyActive === item.name ? true : false}
-                  onClick={() => keyActive === item.name ? setKeyActive(null) : setKeyActive(item.name)}
-                >
-                  {item.name}
-                </TheLink>))}
-            </StyledUl>
+            <>
+              {user && (
+                <UserStyled>
+                  <ImgContainerStyled>
+                    <img alt="user" src={user?.picture}/>
+                  </ImgContainerStyled>
+                  <p>{user?.name}</p>
+                </UserStyled>
+              )}
+            </>
             )}
-          <ImgStyled src='/assets/pics/aivo.png' alt="logo" />
+            <LastContainerStyled>
+              {screenWidth > 1400 && (<StyledUl>
+                <TheLink
+                  onClick={() => handleOnClick()}
+                >
+                  {(isHomePage && isAuthenticated) ? sidebarButtons[1] : sidebarButtons[0]}
+                </TheLink>
+              </StyledUl>)}
+              <ImgStyled src='/assets/pics/aivo.png' alt="logo" />
+            </LastContainerStyled>
         </ContainerStyled>
       </HeaderStyled>
     </>

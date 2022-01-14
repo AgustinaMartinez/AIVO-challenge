@@ -15,7 +15,7 @@ const App = () => {
         <Layout>
           <Switch>
             {isLoading
-              ? <img alt="loading" src="http://auxiliadoravaldivia.cl/colegio/load.gif" style={{ width: '100%' }} />
+              ? <img alt="loading" src="http://auxiliadoravaldivia.cl/colegio/load.gif" style={{ width: '80%', marginLeft: '10%' }} />
               : (isAuthenticated
                 ? <Route exact path="/home" component={Home} />
                 : <Route exact path="/" component={Login} />)}

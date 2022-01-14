@@ -10,6 +10,7 @@ import {
   CardsContainerStyled,
   DropdownsStyled,
   OrderButtonsStyled,
+  PStyled,
   H3Styled,
   LoadingStyled,
 } from './home.styled';
@@ -31,6 +32,7 @@ const Home = () => {
   const { data, setData } = useData();
   const { isAuthenticated } = useAuth0();
 
+  const screenWidth = window.innerWidth;
   let cardsRendered = [];
 
   const dropdowns = [
@@ -84,6 +86,7 @@ const Home = () => {
       };
 
     finalResult.push(filteredPropOptions.sort((a, b) => a - b));
+    filteredProp === 'releaseYear' ? finalResult[0].unshift(dropdowns[0]?.header) : finalResult[0].unshift(dropdowns[1]?.header);
     filteredProp === 'releaseYear' ? setReleaseYearOptions(finalResult[0]) : setProgramTypeOptions(finalResult[0]);
   };
 
@@ -159,6 +162,10 @@ const Home = () => {
     let filteredResult;
 
     if (filter === 'releaseYear') {
+      if(releaseYearOptions[0] === dropdowns[0]?.header) {
+        releaseYearOptions.splice(0, 1);
+      };
+
       setFilters(filters => ({ ...filters, releaseYear: value }));
 
       // if last search was a 'program type' (e.g. a movie), then search all movies of this selected year
@@ -168,6 +175,10 @@ const Home = () => {
         filteredResult = (data?.data && data?.data.length > 0) && data?.data.filter(movie => (movie?.releaseYear === value));
       };
     } else {
+      if (programTypeOptions[0] === dropdowns[1]?.header) {
+        programTypeOptions.splice(0, 1);
+      };
+
       setFilters(filters => ({ ...filters, programType: value }));
 
       // if last search was a 'release year' (e.g. 2015), then search all {selected program, e.g.: series} of that year
@@ -218,7 +229,7 @@ const Home = () => {
         key={button?.id}
         id={button?.id}
         type='primary'
-        width='100px'
+        width={screenWidth < 1400 ? '100px' : '300px'}
         title={buildOrderButtonTitle(button.title, isTitleAsc)}
         icon={(button?.id === 'year') && (isYearAsc ? <ChevronUp /> : <ChevronDown />)}
         onClick={() => handleOrderButtonOnClick(button?.id)}
@@ -247,7 +258,7 @@ const Home = () => {
               alt={card?.title}
             />
           ))
-        ) : <H3Styled>There is any {filters?.programType} in year {filters?.releaseYear} 😕</H3Styled>
+        ) : <PStyled>There is any {filters?.programType} in year {filters?.releaseYear} 😕</PStyled>
       )
     );
   };
@@ -265,6 +276,7 @@ const Home = () => {
             <p>Order by:</p>
             {orderButtons}
           </OrderButtonsStyled>
+          <H3Styled>Last Added</H3Styled>
           <CardsContainerStyled>
             {data?.status === 'success'
               ? cardsList()

@@ -4,6 +4,7 @@ import { LoginContainerStyled, SpanStyled, PStyled } from './login.styled';
 
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
+  const screenWidth = window.innerWidth;
 
   return (
     <LoginContainerStyled>
@@ -15,7 +16,7 @@ const Login = () => {
         id='login'
         type='secondary'
         title='Login'
-        width='100%'
+        width={screenWidth < 1400 ? '100&' : '300px'}
         onClick={() => loginWithRedirect()}
       />
     </LoginContainerStyled>
