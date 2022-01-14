@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, typography } from '../../themes';
+import { colors } from '../../themes';
 
 export const ButtonSidebarStyled = styled.button`
   border: none;

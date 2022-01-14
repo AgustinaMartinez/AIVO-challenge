@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors, typography } from '../../themes';
 
 export const HomeContainerStyled = styled.div`
   width: 100%;
@@ -14,6 +13,27 @@ export const CardsContainerStyled = styled.div`
   flex-wrap: wrap;
   gap: 1rem 0;
   justify-content: space-between;
+`;
+
+export const DropdownsStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+
+  > select {
+    width: 50%;
+  }
+`;
+
+export const OrderButtonsStyled = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const H3Styled = styled.p`
+  margin: 1rem auto;
 `;
 
 export const LoadingStyled = styled.img`
