@@ -4,7 +4,6 @@ import Dropdown from './Dropdown';
 import Footer from './Footer';
 import Header from './Header';
 import Hero from './Hero';
-import LoginButton from './Login';
 
 export {
   Button,
@@ -13,5 +12,4 @@ export {
   Footer,
   Header,
   Hero,
-  LoginButton,
 };

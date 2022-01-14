@@ -21,6 +21,8 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [releaseYearOptions, setReleaseYearOptions] = useState([]);
   const [programTypeOptions, setProgramTypeOptions] = useState([]);
+  const [numberElements, setNumberElements] = useState(10);
+  const [showMoreButton, setShowMoreButton] = useState(true);
   const [filters, setFilters] = useState({
     releaseYear: null,
     programType: '',
@@ -28,6 +30,8 @@ const Home = () => {
 
   const { data, setData } = useData();
   const { isAuthenticated } = useAuth0();
+
+  let cardsRendered = [];
 
   const dropdowns = [
     {
@@ -83,6 +87,8 @@ const Home = () => {
     filteredProp === 'releaseYear' ? setReleaseYearOptions(finalResult[0]) : setProgramTypeOptions(finalResult[0]);
   };
 
+  cardsRendered = data?.data.slice(0, numberElements);
+
   useEffect(() => {
     getData();
   }, []);
@@ -93,6 +99,18 @@ const Home = () => {
       getDropdownOptions('programType');
     };
   }, [data?.status]);
+
+  useEffect(() => {
+    if (data?.status === 'success') {
+      if (cardsRendered && cardsRendered.length === data?.data.length) {
+        setShowMoreButton(false);
+      };
+    };
+  }, [cardsRendered]);
+
+  const loadMore = () => {
+    setNumberElements(numberElements + numberElements);
+  };
   
   const OrderByAsc = prop => {
     if (prop === 'releaseYear') {
@@ -111,7 +129,7 @@ const Home = () => {
         data?.data.sort(SortArray);
       };
       setIsTitleAsc(prev => !prev);
-    }
+    };
   };
 
   const OrderByDesc = prop => {
@@ -131,7 +149,7 @@ const Home = () => {
         data?.data.sort(SortArray);
       };
       setIsTitleAsc(prev => !prev);
-    }
+    };
   };
 
   const filter = (filter, value) => {
@@ -179,7 +197,7 @@ const Home = () => {
       isYearAsc ? OrderByAsc('releaseYear') : OrderByDesc('releaseYear');
     } else {
       isTitleAsc ? OrderByAsc('title') : OrderByDesc('title');
-    }
+    };
   };
 
   const filterDropdowns = (
@@ -199,6 +217,8 @@ const Home = () => {
       <Button
         key={button?.id}
         id={button?.id}
+        type='primary'
+        width='100px'
         title={buildOrderButtonTitle(button.title, isTitleAsc)}
         icon={(button?.id === 'year') && (isYearAsc ? <ChevronUp /> : <ChevronDown />)}
         onClick={() => handleOrderButtonOnClick(button?.id)}
@@ -209,7 +229,7 @@ const Home = () => {
   const cardsList = () => {
     return (
       !newData ? (
-        (data?.data && data?.data.length > 0) && data?.data.map((card, index) => (
+        (cardsRendered && cardsRendered.length > 0) && cardsRendered.map((card, index) => (
           <Card
             key={index}
             title={card?.title}
@@ -250,6 +270,15 @@ const Home = () => {
               ? cardsList()
               : <LoadingStyled alt="loading" src="http://auxiliadoravaldivia.cl/colegio/load.gif" />
             }
+            {(data?.status === 'success') && !newData && showMoreButton && (
+              <Button
+                id='see-more'
+                type='secondary'
+                title='Show More'
+                width='100%'
+                onClick={() => loadMore()}
+              />
+            )}
           </CardsContainerStyled>
         </HomeContainerStyled>
       )}
