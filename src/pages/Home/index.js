@@ -74,7 +74,7 @@ const Home = () => {
     const finalResult = [];
     const filteredPropOptions = [];
 
-    const filteredPropsList = (data?.data && data?.data.length > 0) && data?.data.map(movie => movie[filteredProp]);
+    const filteredPropsList = (data && data?.data && data?.data.length > 0) && data?.data.map(movie => movie[filteredProp]);
 
       if (filteredPropsList) {
         filteredPropsList.forEach(prop => {
@@ -212,7 +212,7 @@ const Home = () => {
   };
 
   const filterDropdowns = (
-    dropdowns && dropdowns.map(dropdown => (
+    (dropdowns && dropdowns.length > 0) && dropdowns.map(dropdown => (
       <Dropdown
         key={dropdown?.id}
         id={dropdown?.id}
@@ -224,13 +224,13 @@ const Home = () => {
   );
 
   const orderButtons = (
-    buttons && buttons.map(button => (
+    (buttons && buttons.length > 0) && buttons.map(button => (
       <Button
         key={button?.id}
         id={button?.id}
         type='primary'
         width={screenWidth < 1400 ? '100px' : '300px'}
-        title={buildOrderButtonTitle(button.title, isTitleAsc)}
+        title={buildOrderButtonTitle(button?.title, isTitleAsc)}
         icon={(button?.id === 'year') && (isYearAsc ? <ChevronUp /> : <ChevronDown />)}
         onClick={() => handleOrderButtonOnClick(button?.id)}
       />

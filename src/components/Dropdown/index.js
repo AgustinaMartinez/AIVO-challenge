@@ -14,7 +14,7 @@ const Dropdown = props => {
     
   return (
     <DropdownHeaderStyled name={name} id={id} onChange={onChange} selectedIndex={selectedIndex}>
-			{items.map(item => (
+			{(items && items.length > 0) && items.map(item => (
 				<DropdownItemStyled id={item} key={item}>
 					{item}
 				</DropdownItemStyled>
