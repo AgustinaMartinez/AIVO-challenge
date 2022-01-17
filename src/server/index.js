@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(router);
 
 app.listen(app.get('port'), () => {
-  console.log(`Server on port ${app.get('port')}`);
+  console.log(`Server on port ${process.env.PORT || app.get('port')}`);
 });
 
 module.exports = { app };
