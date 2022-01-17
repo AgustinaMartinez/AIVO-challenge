@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir build",
+    "build": "cd client && npm install && npm run build",
     "dev": "nodemon src/server/index.js",
-    "start": "node build/server/index.js",
+    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
