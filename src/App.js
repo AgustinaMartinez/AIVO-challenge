@@ -13,14 +13,16 @@ const App = () => {
       <Router>
       <GlobalStyle/>
         <Layout>
-          <Switch>
+          
             {isLoading
               ? <img alt="loading" src="http://auxiliadoravaldivia.cl/colegio/load.gif" style={{ width: '80%', marginLeft: '10%' }} />
-              : (isAuthenticated
+              : <Switch>
+                {isAuthenticated
                 ? <Route exact path="/home" component={Home} />
-                : <Route exact path="/" component={Login} />)}
-            <Route path="*" component={NotFound} />
-          </Switch>
+                : <Route exact path="/" component={Login} />}
+                <Route path="*" component={NotFound} />
+              </Switch>
+            }
         </Layout>
       </Router>
     </AppProvider>
