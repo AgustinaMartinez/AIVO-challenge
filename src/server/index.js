@@ -7,7 +7,7 @@ const router = require('../api');
 const app = express();
 
 // Settings
-app.set('port', config.port);
+const port = process.env.PORT || config.port;
 
 // Middlewares
 app.use(express.json());
@@ -16,9 +16,9 @@ app.use(router);
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.listen(app.get(process.env.PORT || 'port'), () => {
-  console.log(`Server on port ${process.env.PORT || app.get('port')}`);
-});
+app.listen(port), () => {
+  console.log(`Server on port ${port}`);
+};
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
